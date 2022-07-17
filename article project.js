@@ -20,10 +20,10 @@ async function doGetRequest() {
     }
     else{
            
-            if (a.firstName.toLowerCase() <b.firstName.toLowerCase() ) {
+            if (a.title.toLowerCase() <b.title.toLowerCase() ) {
                 return -1;
             }
-            if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) {
+            if (a.title.toLowerCase() > b.title.toLowerCase()) {
                 return 1;
             }
         
