@@ -5,6 +5,7 @@ const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const errorHandler = require('errorhandler');
+const helmet = require('helmet');
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
@@ -17,6 +18,8 @@ const app = express();
 
 //Configure our app
 app.use(cors());
+app.use(helmet());
+  
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
