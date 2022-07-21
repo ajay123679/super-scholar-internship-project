@@ -4,6 +4,7 @@ const app=express();
 const port=process.env.port || 5000
 require("../src/db/conn")
 const monmodel=require("../src/models/schema")
+const countermodel=require("../src/models/Counter")
 app.use(express.json())
 
 
