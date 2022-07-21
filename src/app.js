@@ -5,17 +5,9 @@ const port=process.env.port || 5000
 require("../src/db/conn")
 const monmodel=require("../src/models/schema")
 const countermodel=require("../src/models/Counter")
+const itemRouter=require("./routers/itemroute");
 app.use(express.json())
-
-
-const counterSchema={
-    id:{
-        type:String
-    },
-    seq:{
-        type:Number
-    }
-}
+app.use(itemRouter);
 
 const countermodel=mongoose.model("counter",counterSchema)
 
