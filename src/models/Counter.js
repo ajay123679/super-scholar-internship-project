@@ -7,4 +7,4 @@ const counterSchema={
     }
 }
 const countermodel=new mongoose.model("counter",counterSchema)
-module.exports=counterSchema
+module.exports=countermodel
