@@ -14,4 +14,4 @@ const itemSchema=new mongoose.Schema({
     }
 })
 const monmodel=new mongoose.model("items",itemSchema)
-module.exports=MensRanking;
+module.exports=monmodel;
