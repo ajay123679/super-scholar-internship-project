@@ -44,6 +44,9 @@ router.post('/boards',(req, res) => {
       const getitem=await monmodel.findByIdAndUpdate(_id,req.body);
 
       res.status(201).send(getitem);}
+      else{
+        res.status(400).send("Bad request");
+      }
   }
   catch(e)
   {
