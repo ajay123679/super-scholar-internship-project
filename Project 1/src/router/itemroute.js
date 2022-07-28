@@ -20,60 +20,36 @@ router.post('/boards',(req, res) => {
             seqId=cd.seq
           }
 
-          let insertObject = {
-
-                 title: req.body.title,
-    
-                 stage: 1 // setting stage as 1 for every newly creating item
-    
-          };
-          Item.create(insertObject).then(data => {
-    
-            Item.findByPk(data.id).then(itemData => {
-    
-                // sending 201 status code with newly created item details
-    
-                res.status(201).send(itemData.dataValues);
-    
-            });
-    
-        });
-    
-    });
+          const data=new monmodel({
+            title:req.body.title,
+            id:seqId,
+            stage:1
+          })
+          data.save();
+          
+        })
+        res.send("posted");
+       
   })
 
-  router.put('/boards/:id', (req, res) => {
+  router.put('/boards/:id', async(req, res) => {
 
     // checking the 'stage' value is between 1 to 3
 
-    if(req.body.stage >= 1 && req.body.stage <= 3) {
+    try{
+       
+      if(req.body.stage >= 1 && req.body.stage <= 3) {
+        
+      const _id=req.params.id;
+      const getitem=await monmodel.findByIdAndUpdate(_id,req.body);
 
-        Item.update(req.body, {
-
-            where: {id: req.params.id}
-
-        }).then(data => {
-
-            Item.findByPk(req.params.id).then(itemData => {
-
-                // sending 200 status code with updated item details
-
-                res.status(200).send(itemData.dataValues);
-
-            });
-
-        })
-
- 
-
-    } else {
-
-        // sending 400 status code with empty response
-
-        res.status(400).send();
-
-    }
-
+      res.status(201).send(getitem);}
+  }
+  catch(e)
+  {
+    res.status(500).send(e);
+  }
+   
 });
 module.exports=router;
 
